@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCapImportConverter", "RedCapImportConverter\RedCapImportConverter.csproj", "{6AA83FD3-1445-4865-8BAA-DA4D3E6437CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AA83FD3-1445-4865-8BAA-DA4D3E6437CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA83FD3-1445-4865-8BAA-DA4D3E6437CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA83FD3-1445-4865-8BAA-DA4D3E6437CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA83FD3-1445-4865-8BAA-DA4D3E6437CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
