@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using RedCapImportConverter.PdfParser;
+using RedCapImportConverter.DataExtractors;
+
 namespace RedCapImportConverter
 {
     /// <summary>
@@ -22,6 +25,8 @@ namespace RedCapImportConverter
     {
         public MainWindow()
         {
+            PdfReaderPaged pdfPaged = PdfParser.PdfParser.ParsePdfPaged(@"C:\PROJECTS\PDF_To_Text\IO_Files\ABPMasPDF.pdf");
+            AbpmExtractor extractor = new AbpmExtractor(pdfPaged);
             InitializeComponent();
         }
     }
