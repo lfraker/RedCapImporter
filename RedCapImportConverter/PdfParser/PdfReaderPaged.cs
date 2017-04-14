@@ -77,7 +77,7 @@ namespace RedCapImportConverter.PdfParser
 
         public override string ReadLine()
         {
-            string line = this.reader.ReadLine();
+            string line = this.reader.ReadLine().Trim();
             this.RunValidations(line);
             if (line == null)
             {

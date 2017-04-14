@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCapImportConverter.DataExtractors
 {
-    public abstract class DataExtractor<T> where T : class, BasePdfReader
+    public abstract class DataExtractor<T> where T : BasePdfReader
     {
         protected T pdf;
 

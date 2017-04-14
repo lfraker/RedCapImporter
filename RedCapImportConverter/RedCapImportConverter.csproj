@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="DataExtractors\AbpmExtractor.cs" />
     <Compile Include="DataExtractors\DataExtractor.cs" />
+    <Compile Include="DataExtractors\ExtractorUtilities.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

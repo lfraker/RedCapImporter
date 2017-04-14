@@ -24,6 +24,11 @@ namespace RedCapImportConverter.PdfParser.Rules
             return (line.Contains(this.StartSection));
         }
 
+        public bool ExecuteRule(string line)
+        {
+            throw new NotImplementedException("Execute rule with String not valid for this rule");
+        }
+
         // Readline from start to end section, return line
         public string ExecuteRule(BasePdfReader pdfReader)
         {
@@ -35,7 +40,10 @@ namespace RedCapImportConverter.PdfParser.Rules
                 {
                     if (childRule.CheckRuleApplicability(line))
                     {
-                        childRule.ExecuteRule(pdfReader);
+                        if (childRule.ExecuteRule(line))
+                        {
+                            remainingChildrenRules.Add(childRule);
+                        }
                     }
                     else
                     {

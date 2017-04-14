@@ -10,6 +10,8 @@ namespace RedCapImportConverter.PdfParser.Rules
     {
         string ExecuteRule(BasePdfReader pdfReader);
 
+        bool ExecuteRule(string line);
+
         bool CheckRuleApplicability(string line);
     }
 }
