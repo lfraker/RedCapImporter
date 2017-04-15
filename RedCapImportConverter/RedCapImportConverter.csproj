@@ -72,6 +72,7 @@
     <Compile Include="DataExtractors\AbpmExtractor.cs" />
     <Compile Include="DataExtractors\DataExtractor.cs" />
     <Compile Include="DataExtractors\ExtractorUtilities.cs" />
+    <Compile Include="Exporters\Csv\CsvExporter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -79,19 +80,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AbpmModel.cs" />
-    <Compile Include="Model\IModelObject.cs" />
-    <Compile Include="PdfParser\BasePdfReader.cs" />
-    <Compile Include="PdfParser\Rules\CaptureValueRule.cs" />
-    <Compile Include="PdfParser\Rules\IPdfParsingRule.cs" />
-    <Compile Include="PdfParser\Rules\SectionRule.cs" />
-    <Compile Include="PdfParser\Validations\IntValidation.cs" />
-    <Compile Include="PdfParser\Validations\IPdfValidation.cs" />
-    <Compile Include="PdfParser\PdfParser.cs" />
-    <Compile Include="PdfParser\PdfParserHelper.cs" />
-    <Compile Include="PdfParser\PdfReader.cs" />
-    <Compile Include="PdfParser\PdfReaderPaged.cs" />
-    <Compile Include="PdfParser\Validations\DecimalValidation.cs" />
-    <Compile Include="PdfParser\Validations\StringValidation.cs" />
+    <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Pdf\Reader\BasePdfReader.cs" />
+    <Compile Include="Pdf\Rules\CaptureValueRule.cs" />
+    <Compile Include="Pdf\Rules\IPdfParsingRule.cs" />
+    <Compile Include="Pdf\Rules\PageRule.cs" />
+    <Compile Include="Pdf\Import\RuleImporter.cs" />
+    <Compile Include="Pdf\Rules\SectionRule.cs" />
+    <Compile Include="Pdf\Validations\IntValidation.cs" />
+    <Compile Include="Pdf\Validations\IPdfValidation.cs" />
+    <Compile Include="Pdf\Parser\PdfParser.cs" />
+    <Compile Include="Pdf\Parser\PdfParserHelper.cs" />
+    <Compile Include="Pdf\Reader\PdfReader.cs" />
+    <Compile Include="Pdf\Reader\PdfReaderPaged.cs" />
+    <Compile Include="Pdf\Validations\DecimalValidation.cs" />
+    <Compile Include="Pdf\Validations\StringValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,8 +121,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exporters\Csv\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

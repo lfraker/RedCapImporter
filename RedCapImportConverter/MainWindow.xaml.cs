@@ -13,8 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using RedCapImportConverter.PdfParser;
 using RedCapImportConverter.DataExtractors;
+using RedCapImportConverter.Pdf.Reader;
+using RedCapImportConverter.Pdf.Parser;
+using RedCapImportConverter.Model;
+using RedCapImportConverter.Pdf.Rules.Import;
+using RedCapImportConverter.Pdf.Rules;
+using RedCapImportConverter.Exporters.Csv;
 
 namespace RedCapImportConverter
 {
@@ -25,8 +30,17 @@ namespace RedCapImportConverter
     {
         public MainWindow()
         {
-            PdfReaderPaged pdfPaged = PdfParser.PdfParser.ParsePdfPaged(@"C:\PROJECTS\PDF_To_Text\IO_Files\ABPMasPDF.pdf");
-            AbpmExtractor extractor = new AbpmExtractor(pdfPaged);
+            PdfReaderPaged pdfPaged = Pdf.Parser.PdfParser.ParsePdfPaged(@"C:\PROJECTS\PDF_To_Text\IO_Files\ABPMasPDF.pdf");
+            AbpmModel model = new AbpmModel();
+            RuleImporter rules = new RuleImporter(model);
+            IList<IPdfParsingRule> reuls = rules.GetRules(@"C:\PROJECTS\PDF_To_Text\IO_Files\ABPMRules.txt");
+            foreach (IPdfParsingRule rule in reuls)
+            {
+                rule.ExecuteRule(pdfPaged);
+            }
+            CsvExporter csv = new CsvExporter(@"C:\PROJECTS\PDF_To_Text\IO_Files\ABPMRule.csv");
+            csv.AddModelEntry(model);
+            csv.WriteToCsv();
             InitializeComponent();
         }
     }

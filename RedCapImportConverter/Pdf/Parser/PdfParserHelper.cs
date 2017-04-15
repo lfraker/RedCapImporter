@@ -1,4 +1,4 @@
-﻿namespace RedCapImportConverter.PdfParser
+﻿namespace RedCapImportConverter.Pdf.Parser
 {
     internal static class PDFParserHelper
     {

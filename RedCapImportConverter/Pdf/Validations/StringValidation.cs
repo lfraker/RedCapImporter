@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCapImportConverter.PdfParser.Validations
+namespace RedCapImportConverter.Pdf.Validations
 {
     public class StringValidation : IPdfValidation
     {

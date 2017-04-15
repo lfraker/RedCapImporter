@@ -10,20 +10,13 @@ namespace RedCapImportConverter.DataExtractors
 {
     public static class ExtractorUtilities
     {
-        public static void UpdatePropertyName(IModelObject model, string propertyNameKey, string value)
+        public static void UpdateProperty(BaseModel model, string propertyName, string value)
         {
             Type modelType = model.GetType();
-            FieldInfo property = modelType.GetField(PropertyNameLookup[propertyNameKey],
+            FieldInfo property = modelType.GetField(propertyName,
                 BindingFlags.Public | BindingFlags.Instance);
 
             property.SetValue(model, value);
         }
-
-        private static readonly IDictionary<string, string> PropertyNameLookup = new Dictionary<string, string>()
-        {
-            {"allaveragediastolic", "avall_dia_abp" },
-            {"allstddiastolic", "stdall_dia_abp" },
-            {"dayaveragesystolic", "avday_sys_abp" }
-        };
     }
 }

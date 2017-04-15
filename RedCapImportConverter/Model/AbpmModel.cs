@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedCapImportConverter.Model
 {
-    public class AbpmModel : IModelObject
+    public class AbpmModel : BaseModel
     {
         public string visit_abpm;
         public string bedtime_abp;
@@ -53,18 +53,11 @@ namespace RedCapImportConverter.Model
         public string dip_abp;
         public string bp_load_abp;
         public string bp_load_abp2;
-        public decimal changesys_abp;
-        public decimal changedia_abp;
-        public decimal changehr_abp;
 
-        public AbpmModel ()
-        {
+        //decimal types - maybe?
+        public string changesys_abp;
+        public string changedia_abp;
+        public string changehr_abp;
 
-        }
-
-        public void WriteToCsv()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

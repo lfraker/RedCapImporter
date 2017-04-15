@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCapImportConverter.PdfParser
+namespace RedCapImportConverter.Pdf.Reader
 {
     public class PdfReaderPaged : BasePdfReader
     {
         private readonly IList<string> pages;
-        private StringReader reader;
         private int pageIndex;
 
         public string Page(int pageNumber) => this.pages[pageNumber];
@@ -22,6 +21,7 @@ namespace RedCapImportConverter.PdfParser
         public int PageCount() => this.pages.Count();
 
         public PdfReaderPaged(IList<string> parsedTextPages)
+            : base()
         {
             this.pages = parsedTextPages;
             this.pageIndex = 0;
@@ -30,7 +30,7 @@ namespace RedCapImportConverter.PdfParser
 
         public override void Reset()
         {
-            this.reader = new StringReader(this.pages[this.pageIndex]);
+            this.Reader = new StringReader(this.pages[this.pageIndex]);
         }
 
         public override void SkipToLine(int lineNumber)
@@ -39,7 +39,7 @@ namespace RedCapImportConverter.PdfParser
 
             while (ctr < lineNumber)
             {
-                reader.ReadLine();
+                this.CurrentLine = this.Read();
                 ctr++;
             }
         }
@@ -70,20 +70,20 @@ namespace RedCapImportConverter.PdfParser
 
         public override string ReadRest()
         {
-            string text = this.reader.ReadToEnd();
+            string text = this.Reader.ReadToEnd();
             this.NextPage();
             return text;
         }
 
         public override string ReadLine()
         {
-            string line = this.reader.ReadLine().Trim();
-            this.RunValidations(line);
-            if (line == null)
+            this.CurrentLine = this.Read();
+            this.RunValidations(this.GetCurrentLine());
+            if (this.GetCurrentLine() == null)
             {
                 this.NextPage();
             }
-            return line;
+            return this.GetCurrentLine();
         }
     }
 }

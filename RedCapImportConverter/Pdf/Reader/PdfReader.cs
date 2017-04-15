@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCapImportConverter.PdfParser
+namespace RedCapImportConverter.Pdf.Reader
 {
     public class PdfReader : BasePdfReader
     {
         private readonly string text;
-        private StringReader reader;
 
         public string Text => this.text;
 
         public PdfReader(string parsedText)
+            : base()
         {
             this.text = parsedText;
             this.Reset();
@@ -22,19 +22,19 @@ namespace RedCapImportConverter.PdfParser
 
         public override string ReadLine()
         {
-            string line = this.reader.ReadLine().Trim();
-            this.RunValidations(line);
-            return line;
+            this.CurrentLine = this.Read();
+            this.RunValidations(this.CurrentLine);
+            return this.CurrentLine;
         }
 
         public override string ReadRest()
         {
-            return this.reader.ReadToEnd();
+            return this.Reader.ReadToEnd();
         }
 
         public override void Reset()
         {
-            this.reader = new StringReader(this.text);
+            this.Reader = new StringReader(this.text);
         }
 
         public override void SkipToLine(int lineNumber)
@@ -43,7 +43,7 @@ namespace RedCapImportConverter.PdfParser
 
             while (ctr < lineNumber)
             {
-                reader.ReadLine();
+                this.Read();
                 ctr++;
             }
         }

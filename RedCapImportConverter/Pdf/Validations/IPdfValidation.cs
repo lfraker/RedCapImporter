@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCapImportConverter.Model
+namespace RedCapImportConverter.Pdf
 {
-    public interface IModelObject
+    public interface IPdfValidation
     {
-        void WriteToCsv();
+        bool? Validate(string stringToValidate);
     }
 }

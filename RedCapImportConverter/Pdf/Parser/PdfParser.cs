@@ -2,13 +2,14 @@
 using PdfSharp.Pdf.Content;
 using PdfSharp.Pdf.Content.Objects;
 using PdfSharp.Pdf.IO;
+using RedCapImportConverter.Pdf.Reader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCapImportConverter.PdfParser
+namespace RedCapImportConverter.Pdf.Parser
 {
     public static class PdfParser
     {
@@ -24,9 +25,9 @@ namespace RedCapImportConverter.PdfParser
             return new PdfReaderPaged(pageTexts);
         }
 
-        public static PdfReader ParsePdf(string filePath)
+        public static Reader.PdfReader ParsePdf(string filePath)
         {
-            return new PdfReader(ExtractText(filePath));
+            return new Reader.PdfReader(ExtractText(filePath));
         }
 
         private static String ExtractText(string filePath)
