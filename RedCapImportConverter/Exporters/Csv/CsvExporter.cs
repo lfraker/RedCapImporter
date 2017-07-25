@@ -39,9 +39,18 @@ namespace RedCapImportConverter.Exporters.Csv
             }
         }
 
+        public void BuildGenericDictionary()
+        {
+            this.CsvStoredValues = new Dictionary<string, List<string>>();
+            foreach (BaseModel model in this.ModelEntries)
+            {
+                model.ModelProperties.ToList().ForEach(kvp => this.CsvStoredValues.Add(kvp.Key, new List<string>() { kvp.Value }));
+            }
+        }
+
         public void WriteToCsv()
         {
-            this.BuildDictionary();
+            this.BuildGenericDictionary();
             string csvLines = string.Join(",", this.CsvStoredValues.Keys);
             int index = 0;
             while (index < this.CsvStoredValues.Values.Max(lst => lst.Count()))

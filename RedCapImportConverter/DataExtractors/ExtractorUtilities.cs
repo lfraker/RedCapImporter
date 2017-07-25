@@ -18,5 +18,10 @@ namespace RedCapImportConverter.DataExtractors
 
             property.SetValue(model, value);
         }
+
+        public static void UpdateMapping(BaseModel model, string key, string value)
+        {
+            model.SetProperty(key, value);
+        }
     }
 }

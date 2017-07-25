@@ -53,7 +53,8 @@ namespace RedCapImportConverter.Pdf.Rules
                 }
                 else
                 {
-                    ExtractorUtilities.UpdateProperty(this.ModelObject, this.PropertyName, line);
+                    //ExtractorUtilities.UpdateProperty(this.ModelObject, this.PropertyName, line);
+                    this.ModelObject.SetProperty(this.PropertyName, line);
                     return true;
                 }
             }

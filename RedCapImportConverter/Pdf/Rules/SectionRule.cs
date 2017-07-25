@@ -33,7 +33,7 @@ namespace RedCapImportConverter.Pdf.Rules
             {
                 return false;
             }
-            while (!(line = pdfReader.ReadLine()).Contains(this.EndSection))
+            while ((line = pdfReader.ReadLine()) != null && !line.Contains(this.EndSection))
             {
                 IList<IPdfParsingRule> remainingChildrenRules = new List<IPdfParsingRule>();
                 this.ChildRules = this.ChildRules.Where(cRule => !cRule.ExecuteRule(pdfReader)).ToList();

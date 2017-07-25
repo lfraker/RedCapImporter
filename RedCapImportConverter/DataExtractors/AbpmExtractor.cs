@@ -13,12 +13,12 @@ namespace RedCapImportConverter.DataExtractors
     public class AbpmExtractor : DataExtractor<PdfReaderPaged>
     {
 
-        private BaseModel abpmModel;
+        private BaseModel model;
 
         public AbpmExtractor(PdfReaderPaged pdf)
             : base(pdf)
         {
-            this.abpmModel = new AbpmModel();
+            this.model = new BaseModel();
         }
     }
 }

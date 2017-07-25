@@ -1,0 +1,32 @@
+StartPage:7
+	StartSection:STD
+		Value:Systolic,1,avall_sys_abp
+		Value:Systolic,2,stdall_sys_abp
+		Value:Diastolic,2,stdall_dia_abp
+		Value:Diastolic,1,avall_dia_abp
+		Value:Heart Rate,2,stdall_hr_abp
+		Value:Heart Rate,1,avall_hr_abp
+		Value:MABP,2,stdall_mabp_abp
+		Value:MABP,1,avall_mabp_abp
+	EndSection:DAY
+	StartSection:STD
+		Value:Systolic,1,avday_sys_abp
+		Value:Systolic,2,stdday_sys_abp
+		Value:Diastolic,2,stdday_dia_abp
+		Value:Diastolic,1,avday_dia_abp
+		Value:MABP,2,stdday_mabp_abp
+		Value:MABP,1,avday_mabp_abp
+		Value:Heart Rate,2,stdday_hr_abp
+		Value:Heart Rate,1,avday_hr_abp
+	EndSection:NIGHT
+	StartSection:STD
+		Value:Systolic,1,avnit_sys_abp
+		Value:Systolic,2,stdnit_sys_abp
+		Value:Diastolic,2,stdnit_dia_abp
+		Value:Diastolic,1,avnit_dia_abp
+		Value:MABP,2,stdnit_mabp_abp
+		Value:MABP,1,avnit_mabp_abp
+		Value:Heart Rate,2,stdnit_hr_abp
+		Value:Heart Rate,1,avnit_hr_abp
+	EndSection:j
+EndPage:7

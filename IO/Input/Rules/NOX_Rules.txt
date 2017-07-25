@@ -1,0 +1,8 @@
+StartPage:1
+	StartSection:Respiratory Count 
+		Value:Hypopneas,4,hypopneas_total
+	EndSection:Average Hypopnea
+	StartSection:Pulse
+		Value:Lowest Pulse,1,lw_pulse_total
+	EndSection:Average Low Desat
+EndPage:1

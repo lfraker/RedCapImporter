@@ -5,6 +5,7 @@ using PdfSharp.Pdf.IO;
 using RedCapImportConverter.Pdf.Reader;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,36 @@ namespace RedCapImportConverter.Pdf.Parser
             foreach (PdfPage page in document.Pages) {
                 CObject content = ContentReader.ReadContent(page);
                 IEnumerable<string> extractedText = ExtractText(content);
-                pageTexts.Add(String.Join("\n", extractedText));
+                pageTexts.Add(string.Join("\n", extractedText));
             }
+
+            string debugText = string.Join("\n\n** Page Break **\n\n", pageTexts);
+            string debugPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\RedCapImportConverter\IO\Temp\{System.IO.Path.GetFileName(filePath).Split('_')[0]}.txt";
+            File.WriteAllText(debugPath, debugText);
+
             return new PdfReaderPaged(pageTexts);
+        }
+
+        public static string ParsePdfViewerContent(string filePath)
+        {
+            PdfDocument document = PdfSharp.Pdf.IO.PdfReader.Open(filePath);
+            int pageNumber = 0;
+            string parsedText = "";
+            foreach (PdfPage page in document.Pages)
+            {
+                parsedText += $"\n\n** Page Break: [{pageNumber}] **\n\n";
+                CObject content = ContentReader.ReadContent(page);
+                IEnumerable<string> extractedText = ExtractText(content);
+                int lineNumber = 0;
+                foreach (string textElement in extractedText)
+                {
+                    parsedText += $"[Line {lineNumber}]: {textElement}\n";
+                    lineNumber++;
+                }
+                pageNumber++;
+            }
+
+            return parsedText;
         }
 
         public static Reader.PdfReader ParsePdf(string filePath)
