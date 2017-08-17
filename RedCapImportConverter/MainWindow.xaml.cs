@@ -24,6 +24,9 @@ using RedCapImportConverter.Exporters.Csv;
 using System.IO;
 using System.Threading;
 using System.Windows.Threading;
+using WPFPdfViewer;
+using System.Collections;
+using System.Data;
 
 namespace RedCapImportConverter
 {
@@ -53,7 +56,7 @@ namespace RedCapImportConverter
             {
                 throw new ArgumentException($"Could not find rule file for {string.Join(",", prefixDifference)} files.");
             }
-            string csvPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\RedCapImportConverter\IO\Output\{string.Format("{0:yyyy-MM-dd_hh-mm-ss}", DateTime.Now)}_Output.csv";
+            string csvPath = $@"{ResultsFileDirectory.Text}{ResultsFileName.Text.Replace(".csv", "")}.csv";
             CsvExporter csv = new CsvExporter(csvPath);
             foreach (KeyValuePair<string, string> pdfFileEntry in pdfFilesByPrefixes)
             {
@@ -69,9 +72,41 @@ namespace RedCapImportConverter
             }
 
             csv.WriteToCsv();
-            PdfFileDirectory.Text = "";
-            RuleFileDirectory.Text = "";
-            Environment.Exit(0);
+            DataGrid csvDataGrid = new DataGrid()
+            {
+                ItemsSource = CreateDataTable(csv)
+            };
+
+            Window csvWindow = new Window()
+            {
+                Content = csvDataGrid
+            };
+            csvWindow.Show();
+           // Environment.Exit(0);
+        }
+
+        private ICollection CreateDataTable(CsvExporter csv)
+        {
+            DataTable dt = new DataTable();
+            
+            foreach (string header in csv.GetCsvValues.Keys)
+            {
+                dt.Columns.Add(new DataColumn(header, typeof(string)));
+            }
+
+            for (int i = 0; i < csv.GetCsvValues.First().Value.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
+
+                foreach (KeyValuePair<string, List<string>> csvKvps in csv.GetCsvValues)
+                {
+                    dr[csvKvps.Key] = csvKvps.Value[i];
+                }
+                dt.Rows.Add(dr);
+            }
+
+            DataView dv = new DataView(dt);
+            return dv;
         }
 
         private void PdfFileDirectoryButton_Click(object sender, RoutedEventArgs e)
@@ -129,6 +164,14 @@ namespace RedCapImportConverter
             PdfFileViewerPath.Text = filePath;
             PdfFileViewerPath.ToolTip = filePath;
             ParsedPdfFileViewerBlock.Text = Pdf.Parser.PdfParser.ParsePdfViewerContent(filePath);
+        }
+
+        private void PdfFilePreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowser pdf = new WebBrowser()
+            {
+                Source = new System.Uri(PdfFileViewerPath.Text)
+            };
         }
 
         private void RuleFileEditorButton_Click(object sender, RoutedEventArgs e)

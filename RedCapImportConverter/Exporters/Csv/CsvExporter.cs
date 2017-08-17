@@ -25,6 +25,8 @@ namespace RedCapImportConverter.Exporters.Csv
             this.ModelEntries.Add(model);
         }
 
+        public IDictionary<string, List<string>> GetCsvValues => this.CsvStoredValues;
+
         private void BuildDictionary()
         {
             this.CsvStoredValues = this.ModelEntries.SelectMany(m => m.GetHeaders()).Distinct().ToDictionary(k => k, v => new List<string>());
