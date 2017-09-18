@@ -1,14 +1,18 @@
-#**RedCap Import Converter README**
+**RedCap Import Converter README**
+================================
 
 **Overview**
 ========
 The RedCap Import Converter takes in a set of PDFs and a set of pre-defined rules files to parse specific fields out of the PDFs and combine them into one .csv file output.
+
 **Technical Overview**
 =======
 **-[TODO]**
+
 **User Interface**
 ===========
 The below section covers the two main user interface pages and how to interact with them.
+
 *PDF Parser*
 ---------------
 >The PDF parser page is where the user selects the input PDF files/Rules files and the output file details.
