@@ -26,7 +26,7 @@ namespace RedCapImportConverter.Pdf.Parser
 
             string debugText = string.Join("\n\n** Page Break **\n\n", pageTexts);
             string debugPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\RedCapImportConverter\IO\Temp\{System.IO.Path.GetFileName(filePath).Split('_')[0]}.txt";
-            File.WriteAllText(debugPath, debugText);
+            //File.WriteAllText(debugPath, debugText);
 
             return new PdfReaderPaged(pageTexts);
         }
